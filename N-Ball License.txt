@@ -1,0 +1,37 @@
+By using this software you agree to the following license and disclaimer.
+
+For more information visit www.ragdollsoft.com or write to matteo@ragdollsoft.com
+
+LICENSE
+
+N-Ball is Copyright (C) 2005 Matteo Guarnieri. Resources by different
+authors used with permission in the software remain Copyright (C)
+of their authors.
+N-Ball is shareware, it is copyrighted and NOT in the public domain.
+You may use N-Ball for evaluation purposes for 30 days.
+You may use N-Ball beyond this period only if the software is registered
+with the appropriate compensation. Once registered, you are granted
+a non-exclusive license to use N-Ball on one computer. 
+
+The software may not be modified in any way and may thus only be distributed
+in its original form. It may not be sold, or included on a CD-ROM or any
+other physical media without explicit permission by the author. Registered
+versions of N-Ball are not to be distributed under any circumstances
+unless explicitly stated in writing. Registration codes are strictly
+personal and are not to be distributed under any circumstances unless explicitly
+stated in writing.
+
+Music by Kevin MacLeod (incompetech.com) Licensed under Creative Commons "Attribution 2.0" http://creativecommons.org/licenses/by/2.0/"
+
+DISCLAIMER
+
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
+ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+OR OTHER DEALINGS IN THE SOFTWARE.

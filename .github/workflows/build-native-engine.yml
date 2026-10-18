@@ -1,0 +1,48 @@
+name: Build N-Ball Native Engine
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-native:
+    name: Build Native Engine (Ubuntu & Windows)
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install SDL2 (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libsdl2-dev libgl1-mesa-dev
+
+      - name: Install SDL2 (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          choco install -y sdl2
+
+      - name: Configure CMake
+        working-directory: nball_native
+        run: cmake -B build -S .
+
+      - name: Build Project
+        working-directory: nball_native/build
+        run: cmake --build . --config Release
+
+      - name: Upload Binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: nball-native-${{ runner.os }}
+          path: |
+            nball_native/build/nball_native*
+            nball_native/build/Release/nball_native*
+          retention-days: 14

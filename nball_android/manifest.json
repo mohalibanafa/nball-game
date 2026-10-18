@@ -1,0 +1,18 @@
+{
+  "name": "N-Ball",
+  "short_name": "N-Ball",
+  "start_url": "index.html",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#0b0e14",
+  "theme_color": "#12161f",
+  "description": "Authentic ragdoll physics platformer game reconstructed for Android",
+  "icons": [
+    {
+      "src": "media/nball.png",
+      "sizes": "350x350",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

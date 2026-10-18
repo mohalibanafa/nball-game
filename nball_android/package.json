@@ -1,0 +1,29 @@
+{
+  "name": "nball-android",
+  "version": "1.0.0",
+  "description": "N-Ball authentic physics game ported to Android",
+  "main": "index.html",
+  "scripts": {
+    "start": "node serve.js",
+    "cap:add": "npx cap add android",
+    "cap:sync": "npx cap sync android",
+    "cap:open": "npx cap open android"
+  },
+  "keywords": [
+    "n-ball",
+    "ragdoll",
+    "physics",
+    "android",
+    "game"
+  ],
+  "author": "Matteo Guarnieri (Original) / Reconstructed for Android",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/core": "^6.0.0"
+  },
+  "devDependencies": {
+    "@alexaltea/capstone-js": "^5.0.9",
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/cli": "^6.0.0"
+  }
+}

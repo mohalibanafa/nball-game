@@ -1,0 +1,22 @@
+# Node modules & dependencies
+node_modules/
+nball_android/node_modules/
+
+# Local tools & caches
+tools/
+chrome-debug/
+chrome-test/
+edge-debug/
+
+# Build artifacts & temp files
+build/
+*.pma
+*.log
+screen_*.png
+test_*.html
+strings_dump.json
+utf16_strings.json
+
+# OS files
+.DS_Store
+Thumbs.db
