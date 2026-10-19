@@ -35,3 +35,39 @@ jobs:
           name: nball-native-linux
           path: nball_native/build/nball_native
           retention-days: 14
+
+  build-native-windows:
+    name: Build Native Engine (Windows)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Download & Setup SDL2 for Windows
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri https://github.com/libsdl-org/SDL/releases/download/release-2.30.8/SDL2-devel-2.30.8-VC.zip -OutFile SDL2.zip
+          Expand-Archive SDL2.zip -DestinationPath C:\SDL2
+
+      - name: Configure CMake
+        working-directory: nball_native
+        run: cmake -B build -S . -DSDL2_DIR="C:/SDL2/SDL2-2.30.8/cmake"
+
+      - name: Build Project
+        working-directory: nball_native/build
+        run: cmake --build . --config Release
+
+      - name: Package Windows Binary & SDL2.dll
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path "nball_native_windows_dist" -Force
+          Copy-Item "nball_native/build/Release/nball_native.exe" "nball_native_windows_dist/"
+          Copy-Item "C:/SDL2/SDL2-2.30.8/lib/x64/SDL2.dll" "nball_native_windows_dist/"
+
+      - name: Upload Windows Binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: nball-native-windows
+          path: nball_native_windows_dist/
+          retention-days: 14

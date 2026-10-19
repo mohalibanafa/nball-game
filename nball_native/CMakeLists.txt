@@ -6,14 +6,20 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(SDL2 REQUIRED)
 
-include_directories(${SDL2_INCLUDE_DIRS})
-
 add_executable(nball_native main.cpp)
 
-target_link_libraries(nball_native ${SDL2_LIBRARIES})
+if (TARGET SDL2::SDL2)
+    target_link_libraries(nball_native PRIVATE SDL2::SDL2)
+    if (TARGET SDL2::SDL2main)
+        target_link_libraries(nball_native PRIVATE SDL2::SDL2main)
+    endif()
+else()
+    include_directories(${SDL2_INCLUDE_DIRS})
+    target_link_libraries(nball_native PRIVATE ${SDL2_LIBRARIES})
+endif()
 
 if (WIN32)
-    target_link_libraries(nball_native opengl32)
+    target_link_libraries(nball_native PRIVATE opengl32)
 elseif (ANDROID)
-    target_link_libraries(nball_native GLESv2 log)
+    target_link_libraries(nball_native PRIVATE GLESv2 log)
 endif()
