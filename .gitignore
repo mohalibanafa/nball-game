@@ -1,22 +1,18 @@
-# Node modules & dependencies
+# Dependencies
 node_modules/
-nball_android/node_modules/
 
-# Local tools & caches
-tools/
-chrome-debug/
-chrome-test/
-edge-debug/
+# Android build outputs
+android/.gradle/
+android/build/
+android/app/build/
+android/app/.cxx/
+android/captures/
+local.properties
+.gradle/
 
-# Build artifacts & temp files
-build/
-*.pma
-*.log
-screen_*.png
-test_*.html
-strings_dump.json
-utf16_strings.json
-
-# OS files
+# Temporary / OS files
 .DS_Store
+._*
 Thumbs.db
+*.log
+.tmp_profile/

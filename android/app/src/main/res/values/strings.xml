@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">N-Ball</string>
+    <string name="title_activity_main">N-Ball</string>
+    <string name="package_name">com.mohalibanafa.nball</string>
+    <string name="custom_url_scheme">com.mohalibanafa.nball</string>
+</resources>

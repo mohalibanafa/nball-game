@@ -1,8 +1,0 @@
-{
-  "appId": "com.ragdollsoft.nball",
-  "appName": "N-Ball",
-  "webDir": ".",
-  "server": {
-    "androidScheme": "https"
-  }
-}

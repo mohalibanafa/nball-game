@@ -1,0 +1,11 @@
+{
+  "appId": "com.mohalibanafa.nball",
+  "appName": "N-Ball",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}

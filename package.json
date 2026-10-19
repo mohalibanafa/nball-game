@@ -1,0 +1,27 @@
+{
+  "name": "nball-game",
+  "version": "2.2.0",
+  "description": "N-Ball Physics Game - Authentic Modern Web & Android Port",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo \"Web assets are ready in www/\"",
+    "cap:sync": "cap sync",
+    "cap:open:android": "cap open android"
+  },
+  "keywords": [
+    "nball",
+    "physics",
+    "game",
+    "capacitor",
+    "android",
+    "html5"
+  ],
+  "author": "mohalibanafa",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/android": "^7.0.1",
+    "@capacitor/cli": "^7.0.1",
+    "@capacitor/core": "^7.0.1"
+  }
+}
