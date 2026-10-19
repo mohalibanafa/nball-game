@@ -1,54 +1,107 @@
-# N-Ball v2.2 (Modern Web & Android Port)
+# 🎮 N-Ball v2.2 (Modern Web & Android Port)
 
-An authentic, high-fidelity recreation of the classic physics puzzle-platformer **N-Ball v2.2**, built with modern Web standards, HTML5 Canvas, Web Audio API, and packaged for Android using **Capacitor**.
+[![Build & Release Android APK](https://github.com/mohalibanafa/nball-game/actions/workflows/build-android.yml/badge.svg)](https://github.com/mohalibanafa/nball-game/actions/workflows/build-android.yml)
+[![Release](https://img.shields.io/github/v/release/mohalibanafa/nball-game?color=success&label=Official%20Release)](https://github.com/mohalibanafa/nball-game/releases)
+[![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20Web-blue.svg)](https://github.com/mohalibanafa/nball-game)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Features
+> **إعادة بناء وهندسة عكسية دقيقة للعبة الفيزياء الكلاسيكية الشهيرة N-Ball v2.2** بتقنيات الويب الحديثة (HTML5 Canvas + Web Audio API) مع تغليف أصيل لنظام أندرويد عبر **Capacitor 7** وتوليد تلقائي لحزم الـ APK عبر **GitHub Actions Releases**.
 
-- **Accurate Physics Engine**: Fixed 63.0 FPS physics timestep, authentic BlitzMax Verlet integration, velocity damping, and spring tension relaxation.
-- **Edge-to-Edge Responsive Widescreen**: Dynamically adapts to modern widescreen displays (16:9, 19.5:9, 20:9) with full-viewport canvas and camera tracking.
-- **Full Android Mobile Support**:
-  - Immersive full-screen landscape mode.
-  - Responsive multi-touch controls (D-Pad Left/Right, Jump, Menu/ESC) tailored for thumb comfort.
-  - Native Android APK build automated via GitHub Actions.
-- **Authentic Soundtrack & Sound Effects**:
-  - Original background music track (`1.ogg`) streaming with seamless looping.
-  - Ultra-low latency jump sound powered by Web Audio API buffer synthesis.
-- **All 40 Official Levels**: Complete campaign data across all 4 campaigns (10 levels each) with dynamic platforms, interactive ragdolls, and physics obstacles.
+---
 
-## Playing the Game
+## 🌟 مميزات اللعبة | Key Features
 
-### In the Browser
-1. Run the local server:
-   ```bash
-   node server.js
-   ```
-2. Open in your browser:
-   - Local: `http://localhost:8080/`
-   - Mobile on Wi-Fi: `http://<LAN_IP>:8080/`
+### 1. ⚙️ محرك فيزياء أصيل وعالي الدقة (Authentic Physics Engine)
+- **معدل زمني ثابت 63.0 FPS (Fixed Timestep):** محاكاة فيزيائية دقيقة مطابقة تماماً لمحرك اللعبة الأصلي، مفصولة عن تردد الشاشة (Hz) لضمان سلوك متطابق على جميع الأجهزة.
+- **تكامل فيرليت واستعادة الشد (Verlet Integration & Angular Spring Tension):** محاكاة مرنة للأجسام المطاطية والهياكل المعلقة (مثل جسر الكاتيناري والمجسمات المعلقة) تحافظ على شكلها الهندسي دون أن تنهار.
+- **تأثير وزخم واقعي للكرة (Heavy Impact & Momentum Transfer):** وزن وتأثير صلب للكرة عند الاصطدام بالمجسمات والعربات والمنصات غير المثبتة مع الحفاظ التام على سرعة السقوط الحرة وتسارع الحركة.
+- **استيقاظ المجسمات التفاعلية (Active Viewport Culling):** تفعيل المجسمات والعربات عندما تقترب كاميرا اللاعب منها، مما يمنع سقوطها المسبق قبل وصول اللاعب.
 
-### Controls
-- **Desktop**:
-  - `Left Arrow` / `A`: Roll Left
-  - `Right Arrow` / `D`: Roll Right
-  - `Space` / `W`: Jump (Hold to jump higher)
-  - `F`: Toggle Fullscreen
-  - `Escape`: Pause / Menu
-- **Mobile / Touch**:
-  - On-screen touch buttons automatically appear on touch devices or via `?touch=1`.
+### 2. 📱 تجربة أندرويد متكاملة بشاشة كاملة (Immersive Fullscreen Mobile)
+- **شاشة كاملة غامرة (Sticky Immersive Mode):** إخفاء شريط الإشعارات وشريط التنقل بالكامل لتجربة لعب سلسة وبدون أي حواف سوداء مزعجة.
+- **توجيه أفقي تلقائي (`sensorLandscape`):** تشغيل اللعبة بالوضع العرضي المريح للعين واليدين.
+- **تحكم متطور باللمس المتعدد (Responsive Multi-touch Controls):** أزرار لمس مريحة للإبهامين (يسار/يمين والقفز) تدعم الضغط المتزامن بدون أي تضارب أو تأخير.
 
-## Building the Android APK
+### 3. 🎵 صوتيات فورية وموسيقى تصويرية أصلية (Zero-Latency Audio)
+- **موسيقى مستمرة وحلقية (Seamless Soundtrack):** تعمل الموسيقى الأصلية (`1.ogg`) تلقائياً في الخلفية.
+- **صوت قفز فوري (0ms Latency):** معالجة مسبقة للمؤثرات الصوتية عبر **Web Audio API** (`AudioBuffer`) لتفادي التأخير الشائع في متصفحات الهواتف.
 
-This repository includes automated CI via GitHub Actions (`.github/workflows/build-android.yml`) that builds the debug APK automatically on every push to `main`.
+### 4. 🗺️ جميع المراحل الأربعين الأصلية (All 40 Official Levels)
+- يتضمن المشروع بيانات الحملات الأربعة كاملة (Campaigns 1 to 4) بكل تفاصيلها وتحدياتها وألغازها الفيزيائية.
 
-To build locally:
+---
+
+## 📲 تحميل تطبيق الأندرويد (Download Android APK)
+
+يمكنك تنزيل أحدث إصدار من اللعبة مباشرة وتثبيته على هاتفك الأندرويد:
+👉 **[تنزيل N-Ball APK من صفحة الـ Releases](https://github.com/mohalibanafa/nball-game/releases)**
+
+---
+
+## 🕹️ أزرار التحكم | Controls
+
+| الزر (Desktop) | شاشة اللمس (Mobile) | الوظيفة |
+| :--- | :--- | :--- |
+| `◀` / `A` | زر السهم الأيسر | دحرجة الكرة لليسار |
+| `▶` / `D` | زر السهم الأيمن | دحرجة الكرة لليمين |
+| `Space` / `W` | زر `JUMP` | القفز (استمر بالضغط لقفزة أعلى) |
+| `F` | تلقائي في تطبيق الأندرويد | ملء الشاشة (Fullscreen) |
+| `Escape` | زر `ESC` | القائمة الرئيسية / إيقاف مؤقت |
+
+---
+
+## 🚀 التشغيل والتطوير المحلي | Local Development
+
+### 1. تشغيل نسخة الويب محلياً وعلى الشبكة:
 ```bash
+# تثبيت الاعتمادات
 npm install
-npx cap sync android
-cd android
-./gradlew assembleDebug
-```
-The resulting APK is located at:
-`android/app/build/outputs/apk/debug/app-debug.apk`
 
-## License
-MIT
+# تشغيل خادم اللعبة المحلي
+node server.js
+```
+سيظهر لك رابطان في التيرمينال:
+- **محلياً على الحاسوب:** `http://localhost:8080/`
+- **على الهاتف (عبر Wi-Fi):** `http://<LAN_IP>:8080/`
+
+### 2. مزامنة وبناء تطبيق الأندرويد محلياً:
+```bash
+# مزامنة ملفات الويب مع مشروع الأندرويد
+npx cap sync android
+
+# بناء حزمة الأندرويد (Release APK)
+cd android
+./gradlew assembleRelease
+```
+ستجد ملف الـ APK الناتج في:
+`android/app/build/outputs/apk/release/app-release.apk`
+
+---
+
+## 🏗️ هيكلية المشروع | Project Structure
+
+```
+nball-game/
+├── .github/
+│   └── workflows/
+│       └── build-android.yml    # خط أنابيب البناء التلقائي وإصدار الـ Releases
+├── android/                     # مشروع Android Studio الأصلي المولد عبر Capacitor
+│   └── app/src/main/
+│       ├── AndroidManifest.xml  # إعدادات الشاشة الكاملة والاتجاه الأفقي
+│       └── java/.../MainActivity.java # كود الشاشة الغامرة (Immersive Mode)
+├── www/                         # ملفات الويب الخاصة باللعبة
+│   ├── index.html               # المحرك الرئيسي ورسوميات Canvas
+│   ├── levels_data.js           # بيانات المراحل الأربعين الأصلية
+│   └── media/                   # الخطوط والمؤثرات الصوتية والموسيقى
+├── capacitor.config.json        # إعدادات تطبيق Capacitor
+├── package.json                 # حزم المشروع والاعتمادات
+├── server.js                    # خادم محلي خفيف لبث اللعبة على الشبكة
+└── README.md                    # دليل المشروع
+```
+
+---
+
+## 📜 الترخيص | License
+
+هذا المشروع مفتوح المصدر ومتاح تحت ترخيص [MIT License](LICENSE).
+جميع الأصول الصوتية والتصميمية الأصلية تعود لمالكيها الأصليين ومحفوظة حقوقها.

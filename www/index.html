@@ -693,8 +693,10 @@ function collideBallBall(b1, b2) {
 
   if (dist < 0.0001) dist = 0.0001;
   const overlap = (radii + 0.01) - dist;
-  const m1 = b1.actualmass;
-  const m2 = b2.actualmass;
+
+  // Solid impact weight: playerBall has heavier collision mass (3.5x) so it impacts and pushes obstacles with authority
+  const m1 = (b1 === playerBall) ? 3.5 : (b1.actualmass || 1.0);
+  const m2 = (b2 === playerBall) ? 3.5 : (b2.actualmass || 1.0);
   const totalM = m1 + m2;
 
   if (!b2.anchored) {
@@ -711,7 +713,7 @@ function collideBallBall(b1, b2) {
   const normalVel = (rvx * dx + rvy * dy) / dist;
 
   if (normalVel < 0) {
-    const impulse = -(1.0 + 0.15) * normalVel / (1.0 / m1 + 1.0 / m2);
+    const impulse = -(1.0 + 0.25) * normalVel / (1.0 / m1 + 1.0 / m2);
     const ix = impulse * (dx / dist);
     const iy = impulse * (dy / dist);
     if (!b1.anchored) { b1.xv -= ix / m1; b1.yv -= iy / m1; }
@@ -755,16 +757,49 @@ function collideBallLink(b, l) {
   const nx = diffX / dist;
   const ny = diffY / dist;
 
+  // Weight transfer between ball and link
+  const mb = (b === playerBall) ? 3.5 : (b.actualmass || 1.0);
+  const m1 = l.b1.anchored ? 999999 : (l.b1.actualmass || 1.0);
+  const m2 = l.b2.anchored ? 999999 : (l.b2.actualmass || 1.0);
+  const mLink = (1 - t) * m1 + t * m2;
+
+  let rLink = mb / (mb + mLink);
+  if (rLink > 0.85) rLink = 0.85;
+  const rBall = 1.0 - rLink;
+
   if (!b.anchored) {
-    b.x += nx * overlap;
-    b.y += ny * overlap;
+    b.x += nx * overlap * rBall;
+    b.y += ny * overlap * rBall;
+  }
+
+  // Push unanchored link endpoints so the player ball's weight depresses dynamic links, bridges, and seesaws
+  if (!l.b1.anchored && rLink > 0.001) {
+    const w1 = (1 - t) * rLink;
+    l.b1.x -= nx * overlap * w1;
+    l.b1.y -= ny * overlap * w1;
+  }
+  if (!l.b2.anchored && rLink > 0.001) {
+    const w2 = t * rLink;
+    l.b2.x -= nx * overlap * w2;
+    l.b2.y -= ny * overlap * w2;
   }
 
   const bVelN = b.xv * nx + b.yv * ny;
   if (bVelN < 0) {
     // Soft restitution (0.10) so the ball lands and rolls smoothly without exaggerated bouncing
-    b.xv -= (1.0 + 0.10) * bVelN * nx;
-    b.yv -= (1.0 + 0.10) * bVelN * ny;
+    b.xv -= (1.0 + 0.10) * bVelN * nx * rBall;
+    b.yv -= (1.0 + 0.10) * bVelN * ny * rBall;
+
+    if (!l.b1.anchored && rLink > 0.001) {
+      const w1 = (1 - t) * rLink;
+      l.b1.xv -= bVelN * nx * w1 * 0.75;
+      l.b1.yv -= bVelN * ny * w1 * 0.75;
+    }
+    if (!l.b2.anchored && rLink > 0.001) {
+      const w2 = t * rLink;
+      l.b2.xv -= bVelN * nx * w2 * 0.75;
+      l.b2.yv -= bVelN * ny * w2 * 0.75;
+    }
   }
 
   const tx = -ny;
