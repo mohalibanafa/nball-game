@@ -37,6 +37,20 @@ jobs:
       - name: Sync Capacitor Android
         run: npx cap sync android
 
+      - name: Set up Release Keystore
+        run: |
+          if [ -n "${{ secrets.KEYSTORE_BASE64 }}" ]; then
+            echo "Decoding release keystore from secrets..."
+            echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > "${{ github.workspace }}/android/app/release.keystore"
+          else
+            echo "No secrets keystore found. Generating fallback..."
+            keytool -genkey -v -keystore "${{ github.workspace }}/android/app/release.keystore" -storepass "${{ secrets.STORE_PASSWORD || 'androidrelease123' }}" -alias "${{ secrets.KEY_ALIAS || 'mohalibanafa' }}" -keypass "${{ secrets.KEY_PASSWORD || 'androidrelease123' }}" -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=mohalibanafa,O=mohalibanafa,C=SA"
+          fi
+          echo "KEYSTORE_PATH=${{ github.workspace }}/android/app/release.keystore" >> $GITHUB_ENV
+          echo "STORE_PASSWORD=${{ secrets.STORE_PASSWORD || 'androidrelease123' }}" >> $GITHUB_ENV
+          echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD || 'androidrelease123' }}" >> $GITHUB_ENV
+          echo "KEY_ALIAS=${{ secrets.KEY_ALIAS || 'mohalibanafa' }}" >> $GITHUB_ENV
+
       - name: Make Gradle Wrapper Executable
         run: chmod +x android/gradlew
 
@@ -48,10 +62,11 @@ jobs:
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
+        continue-on-error: true
         with:
           name: N-Ball-v2.2.0-APK
           path: android/app/build/outputs/apk/release/nball-v2.2.0.apk
-          retention-days: 30
+          retention-days: 7
 
       - name: Create or Update GitHub Release
         env:
